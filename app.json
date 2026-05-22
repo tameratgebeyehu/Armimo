@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Armimo",
+    "slug": "armimo",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "newArchEnabled": false,
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.armimo.app"
+    },
+    "android": {
+      "package": "com.armimo.app",
+      "permissions": [
+        "SCHEDULE_EXACT_ALARM",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE"
+      ]
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "expo-notifications",
+        {
+          "color": "#2563EB",
+          "sounds": []
+        }
+      ],
+      "expo-asset"
+    ]
+  }
+}
