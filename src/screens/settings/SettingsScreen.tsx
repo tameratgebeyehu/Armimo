@@ -3,7 +3,7 @@
 // ─────────────────────────────────────────────
 
 import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import { SafeAreaWrapper } from '../../components/Layout';
 import { AppText } from '../../components/AppText';
@@ -400,6 +400,11 @@ export function SettingsScreen() {
 
         {/* ── App Info ────────────────────── */}
         <View style={styles.footerInfo}>
+          <Image
+            source={require('../../../assets/logo.png')}
+            style={styles.footerLogo}
+            resizeMode="contain"
+          />
           <AppText variant="title" color={colors.textTertiary}>
             {settings.language === 'am' ? APP_NAME_AM : APP_NAME}
           </AppText>
@@ -480,6 +485,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.md,
+  },
+  footerLogo: {
+    width: 44,
+    height: 44,
+    borderRadius: 10,
+    marginBottom: Spacing.sm,
+    borderWidth: 1,
+    borderColor: '#E5E7EB',
+    backgroundColor: '#FFFFFF',
   },
   footerInfo: {
     alignItems: 'center',

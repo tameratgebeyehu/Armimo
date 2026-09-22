@@ -12,6 +12,7 @@ import {
   Easing,
   Dimensions,
   Platform,
+  Image,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaWrapper } from '../components/Layout';
@@ -487,8 +488,12 @@ export function HomeScreen() {
           >
             <View style={styles.header}>
               <View style={styles.headerTitleWrap}>
-                <View style={[styles.avatarCircle, { backgroundColor: colors.surface + '80', borderColor: colors.primary + '20' }]}>
-                  <Ionicons name={getGreetingIcon(currentDate.getHours())} size={22} color={colors.primary} />
+                <View style={[styles.avatarCircle, { backgroundColor: '#FFFFFF', borderColor: colors.primary + '30' }]}>
+                  <Image
+                    source={require('../../assets/logo.png')}
+                    style={styles.headerLogo}
+                    resizeMode="contain"
+                  />
                 </View>
                 <View style={{ flex: 1 }}>
                   <AppText variant="headline" color={colors.textPrimary} style={styles.greetingText}>
@@ -954,6 +959,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.sm,
+  },
+  headerLogo: {
+    width: 32,
+    height: 32,
+    borderRadius: 6,
   },
   avatarCircle: {
     width: 44,

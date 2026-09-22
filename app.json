@@ -6,6 +6,12 @@
     "orientation": "portrait",
     "newArchEnabled": false,
     "userInterfaceStyle": "automatic",
+    "icon": "./assets/logo.png",
+    "splash": {
+      "image": "./assets/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFFFF"
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -31,6 +37,12 @@
         }
       ],
       "expo-asset"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "08ecee16-2bf3-471e-b2ab-3d1ae4e968c0"
+      }
+    },
+    "owner": "tamerat"
   }
 }

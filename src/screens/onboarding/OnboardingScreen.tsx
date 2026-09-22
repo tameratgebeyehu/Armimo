@@ -13,6 +13,8 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
   SafeAreaView,
+  Image,
+  ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../theme/ThemeProvider';
@@ -204,116 +206,132 @@ export function OnboardingScreen() {
   // Renders Step 1: Language & Theme Selection
   const renderStep0 = () => {
     return (
-      <View style={styles.stepContainer}>
-        <View style={styles.headerArea}>
-          <AppText variant="headline" align="center" style={styles.title}>
-            {t.onboardingWelcome}
-          </AppText>
-          <AppText variant="body" color={colors.textSecondary} align="center" style={styles.subtitle}>
-            {t.onboardingWelcomeDesc}
-          </AppText>
-        </View>
-
-        {/* Language Selection Card */}
-        <AppText variant="label" color={colors.textSecondary} style={styles.sectionTitle}>
-          {t.onboardingChooseLang}
-        </AppText>
-        <View style={styles.row}>
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => setLanguage('en')}
-            style={[
-              styles.optionCard,
-              {
-                backgroundColor: colors.surface,
-                borderColor: settings.language === 'en' ? colors.primary : colors.border,
-              },
-            ]}
-          >
-            <AppText variant="titleMd" color={settings.language === 'en' ? colors.primary : colors.textPrimary}>
-              English
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.stepContainer}>
+          <View style={styles.headerArea}>
+            <Image
+              source={require('../../../assets/logo.png')}
+              style={[
+                styles.logo,
+                {
+                  borderColor: colors.border,
+                  shadowColor: colors.textPrimary,
+                },
+              ]}
+              resizeMode="contain"
+            />
+            <AppText variant="headline" align="center" style={styles.title}>
+              {t.onboardingWelcome}
             </AppText>
-            {settings.language === 'en' && (
-              <Ionicons name="checkmark-circle" size={20} color={colors.primary} />
-            )}
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => setLanguage('am')}
-            style={[
-              styles.optionCard,
-              {
-                backgroundColor: colors.surface,
-                borderColor: settings.language === 'am' ? colors.primary : colors.border,
-              },
-            ]}
-          >
-            <AppText variant="titleMd" color={settings.language === 'am' ? colors.primary : colors.textPrimary}>
-              አማርኛ
+            <AppText variant="body" color={colors.textSecondary} align="center" style={styles.subtitle}>
+              {t.onboardingWelcomeDesc}
             </AppText>
-            {settings.language === 'am' && (
-              <Ionicons name="checkmark-circle" size={20} color={colors.primary} />
-            )}
-          </TouchableOpacity>
-        </View>
+          </View>
 
-        {/* Theme Selection Card */}
-        <AppText variant="label" color={colors.textSecondary} style={[styles.sectionTitle, { marginTop: Spacing.xl }]}>
-          {t.onboardingChooseTheme}
-        </AppText>
-        <View style={styles.row}>
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => {
-              setThemeMode('light');
-              setTheme('light');
-            }}
-            style={[
-              styles.optionCard,
-              {
-                backgroundColor: colors.surface,
-                borderColor: settings.themeMode === 'light' ? colors.primary : colors.border,
-              },
-            ]}
-          >
-            <View style={styles.optionContent}>
-              <Ionicons name="sunny-outline" size={24} color={colors.accentOrange} />
-              <AppText variant="bodyMedium" color={colors.textPrimary}>
-                {t.onboardingThemeLight}
+          {/* Language Selection Card */}
+          <AppText variant="label" color={colors.textSecondary} style={styles.sectionTitle}>
+            {t.onboardingChooseLang}
+          </AppText>
+          <View style={styles.row}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => setLanguage('en')}
+              style={[
+                styles.optionCard,
+                {
+                  backgroundColor: colors.surface,
+                  borderColor: settings.language === 'en' ? colors.primary : colors.border,
+                },
+              ]}
+            >
+              <AppText variant="titleMd" color={settings.language === 'en' ? colors.primary : colors.textPrimary}>
+                English
               </AppText>
-            </View>
-            {settings.themeMode === 'light' && (
-              <Ionicons name="checkmark-circle" size={20} color={colors.primary} />
-            )}
-          </TouchableOpacity>
+              {settings.language === 'en' && (
+                <Ionicons name="checkmark-circle" size={20} color={colors.primary} />
+              )}
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => {
-              setThemeMode('dark');
-              setTheme('dark');
-            }}
-            style={[
-              styles.optionCard,
-              {
-                backgroundColor: colors.surface,
-                borderColor: settings.themeMode === 'dark' ? colors.primary : colors.border,
-              },
-            ]}
-          >
-            <View style={styles.optionContent}>
-              <Ionicons name="moon-outline" size={24} color={colors.primary} />
-              <AppText variant="bodyMedium" color={colors.textPrimary}>
-                {t.onboardingThemeDark}
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => setLanguage('am')}
+              style={[
+                styles.optionCard,
+                {
+                  backgroundColor: colors.surface,
+                  borderColor: settings.language === 'am' ? colors.primary : colors.border,
+                },
+              ]}
+            >
+              <AppText variant="titleMd" color={settings.language === 'am' ? colors.primary : colors.textPrimary}>
+                አማርኛ
               </AppText>
-            </View>
-            {settings.themeMode === 'dark' && (
-              <Ionicons name="checkmark-circle" size={20} color={colors.primary} />
-            )}
-          </TouchableOpacity>
+              {settings.language === 'am' && (
+                <Ionicons name="checkmark-circle" size={20} color={colors.primary} />
+              )}
+            </TouchableOpacity>
+          </View>
+
+          {/* Theme Selection Card */}
+          <AppText variant="label" color={colors.textSecondary} style={[styles.sectionTitle, { marginTop: Spacing.xl }]}>
+            {t.onboardingChooseTheme}
+          </AppText>
+          <View style={styles.row}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => {
+                setThemeMode('light');
+                setTheme('light');
+              }}
+              style={[
+                styles.optionCard,
+                {
+                  backgroundColor: colors.surface,
+                  borderColor: settings.themeMode === 'light' ? colors.primary : colors.border,
+                },
+              ]}
+            >
+              <View style={styles.optionContent}>
+                <Ionicons name="sunny-outline" size={24} color={colors.accentOrange} />
+                <AppText variant="bodyMedium" color={colors.textPrimary}>
+                  {t.onboardingThemeLight}
+                </AppText>
+              </View>
+              {settings.themeMode === 'light' && (
+                <Ionicons name="checkmark-circle" size={20} color={colors.primary} />
+              )}
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => {
+                setThemeMode('dark');
+                setTheme('dark');
+              }}
+              style={[
+                styles.optionCard,
+                {
+                  backgroundColor: colors.surface,
+                  borderColor: settings.themeMode === 'dark' ? colors.primary : colors.border,
+                },
+              ]}
+            >
+              <View style={styles.optionContent}>
+                <Ionicons name="moon-outline" size={24} color={colors.primary} />
+                <AppText variant="bodyMedium" color={colors.textPrimary}>
+                  {t.onboardingThemeDark}
+                </AppText>
+              </View>
+              {settings.themeMode === 'dark' && (
+                <Ionicons name="checkmark-circle" size={20} color={colors.primary} />
+              )}
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      </ScrollView>
     );
   };
 
@@ -445,62 +463,67 @@ export function OnboardingScreen() {
     ];
 
     return (
-      <View style={styles.stepContainer}>
-        <View style={styles.headerArea}>
-          <AppText variant="headline" align="center" style={styles.title}>
-            {t.onboardingGoalTitle}
-          </AppText>
-          <AppText variant="body" color={colors.textSecondary} align="center" style={styles.subtitle}>
-            {t.onboardingGoalDesc}
-          </AppText>
-        </View>
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={styles.stepContainer}>
+          <View style={styles.headerArea}>
+            <AppText variant="headline" align="center" style={styles.title}>
+              {t.onboardingGoalTitle}
+            </AppText>
+            <AppText variant="body" color={colors.textSecondary} align="center" style={styles.subtitle}>
+              {t.onboardingGoalDesc}
+            </AppText>
+          </View>
 
-        <View style={{ gap: Spacing.md, marginTop: Spacing.lg }}>
-          {goals.map((item) => {
-            const isSelected = selectedGoal === item.hours;
-            return (
-              <TouchableOpacity
-                key={item.hours}
-                activeOpacity={0.8}
-                onPress={() => setSelectedGoal(item.hours)}
-                style={[
-                  styles.goalCard,
-                  {
-                    backgroundColor: colors.surface,
-                    borderColor: isSelected ? colors.primary : colors.border,
-                  },
-                ]}
-              >
-                <View style={styles.goalLeft}>
-                  <View
-                    style={[
-                      styles.goalDotOuter,
-                      { borderColor: isSelected ? colors.primary : colors.textTertiary },
-                    ]}
-                  >
-                    {isSelected && (
-                      <View style={[styles.goalDotInner, { backgroundColor: colors.primary }]} />
-                    )}
+          <View style={{ gap: Spacing.md, marginTop: Spacing.lg }}>
+            {goals.map((item) => {
+              const isSelected = selectedGoal === item.hours;
+              return (
+                <TouchableOpacity
+                  key={item.hours}
+                  activeOpacity={0.8}
+                  onPress={() => setSelectedGoal(item.hours)}
+                  style={[
+                    styles.goalCard,
+                    {
+                      backgroundColor: colors.surface,
+                      borderColor: isSelected ? colors.primary : colors.border,
+                    },
+                  ]}
+                >
+                  <View style={styles.goalLeft}>
+                    <View
+                      style={[
+                        styles.goalDotOuter,
+                        { borderColor: isSelected ? colors.primary : colors.textTertiary },
+                      ]}
+                    >
+                      {isSelected && (
+                        <View style={[styles.goalDotInner, { backgroundColor: colors.primary }]} />
+                      )}
+                    </View>
+                    <View style={{ marginLeft: Spacing.sm }}>
+                      <AppText variant="titleMd" color={isSelected ? colors.primary : colors.textPrimary}>
+                        {item.label}
+                      </AppText>
+                      <AppText variant="caption" color={colors.textSecondary}>
+                        {item.desc}
+                      </AppText>
+                    </View>
                   </View>
-                  <View style={{ marginLeft: Spacing.sm }}>
-                    <AppText variant="titleMd" color={isSelected ? colors.primary : colors.textPrimary}>
-                      {item.label}
-                    </AppText>
-                    <AppText variant="caption" color={colors.textSecondary}>
-                      {item.desc}
-                    </AppText>
-                  </View>
-                </View>
-                <Ionicons
-                  name={isSelected ? "ribbon" : "ribbon-outline"}
-                  size={24}
-                  color={isSelected ? colors.primary : colors.textTertiary}
-                />
-              </TouchableOpacity>
-            );
-          })}
+                  <Ionicons
+                    name={isSelected ? "ribbon" : "ribbon-outline"}
+                    size={24}
+                    color={isSelected ? colors.primary : colors.textTertiary}
+                  />
+                </TouchableOpacity>
+              );
+            })}
+          </View>
         </View>
-      </View>
+      </ScrollView>
     );
   };
 
@@ -657,14 +680,31 @@ const styles = StyleSheet.create({
     right: -80,
     opacity: 0.06,
   },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    paddingVertical: Spacing.lg,
+  },
   stepContainer: {
     flex: 1,
     paddingHorizontal: Spacing.xl,
     justifyContent: 'center',
   },
+  logo: {
+    width: 76,
+    height: 76,
+    borderRadius: 18,
+    marginBottom: Spacing.md,
+    borderWidth: 1.5,
+    backgroundColor: '#FFFFFF',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+    elevation: 4,
+  },
   headerArea: {
     alignItems: 'center',
-    marginBottom: Spacing.xxl,
+    marginBottom: Spacing.lg,
   },
   title: {
     fontFamily: FontFamily.bold,
